@@ -1,6 +1,8 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { HiOutlineTrash } from "react-icons/hi";
 export default function RemoveButton({ id }) {
+  const router = useRouter();
   const removeTask = async () => {
     const confirmed = confirm("Are you sure you want to delete this task?");
     if (confirmed) {
@@ -11,7 +13,7 @@ export default function RemoveButton({ id }) {
         if (!res.ok) {
           throw new Error(`Failed to delete task ${res.status}`);
         }
-        window.location.reload();
+        router.refresh();
       } catch (error) {
         console.error("Error deleting task: ", error);
       }

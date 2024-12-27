@@ -4,7 +4,7 @@ import Task from "../../../../models/task";
 
 export async function PUT(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const { newTitle: title, newDescription: description } =
       await request.json();
 
@@ -44,7 +44,7 @@ export async function PUT(request, { params }) {
 
 export async function GET(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     await connectMongoDB();
     const task = await Task.findOne({ _id: id });
 
